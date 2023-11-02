@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <launch>
-    <node pkg="python_test" type="GPSodom.py" name="odomgps">
+    <node pkg="CLASmovingbase" type="GPSodom.py" name="odomgps">
         <param name="heading" value="179.169287"/>
         <rosparam param="initial_coordinate">[35.709918, 139.523032]</rosparam>
     </node>
     
-    <node pkg="python_test" type="movingbase_quat.py" name="movingbase_to_quat" respawn="true"/>
+    <node pkg="CLASmovingbase" type="movingbase_quat.py" name="movingbase_to_quat" respawn="true"/>
     
-    <node pkg="python_test" type="combination.py" name="CLAS_movingbase" respawn="true"/>
+    <node pkg="CLASmovingbase" type="combination.py" name="CLAS_movingbase" respawn="true"/>
 
     
     <node name="combine_dr_measurements" pkg="robot_pose_ekf" type="robot_pose_ekf">
