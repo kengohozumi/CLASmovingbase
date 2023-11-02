@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="python_test" type="GPSodom.py" name="odomgps">
+        <param name="heading" value="179.169287"/>
+        <rosparam param="initial_coordinate">[35.709918, 139.523032]</rosparam>
+    </node>
+    
+    <node pkg="python_test" type="movingbase_quat.py" name="movingbase_to_quat" respawn="true"/>
+    
+    <node pkg="python_test" type="combination.py" name="CLAS_movingbase" respawn="true"/>
+    
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
+        <rosparam command="load" file="$(find launch_test)/config/ekf.yaml" />
+        <remap from="odom0" to="/CLAS_movingabse" />
+        <remap from="imu0" to="/imu" />
+    </node>    
+</launch>
